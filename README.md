@@ -18,15 +18,16 @@ The core will coordinate that lifecycle. Database and index backends are replace
 
 ## Documentation
 
-The Chinese-first preview documentation site lives in [`website/`](./website). It explains the product boundary, RAG pipeline, knowledge lifecycle, adapter model, and roadmap without presenting design proposals as released API.
+The Chinese-first documentation source lives in [`docs/`](./docs), with a matching English surface. Rspress configuration and build tooling live in [`website/`](./website); GitHub Pages publishes the static site at [devcodex-labs.github.io/lorebit](https://devcodex-labs.github.io/lorebit/).
+
+The documentation explains the product boundary, RAG workflow, knowledge lifecycle, adapter model, and roadmap without presenting design proposals as released API.
 
 ## Status
 
 - Product boundary: frozen for the initial implementation phase.
-- Documentation site: initial preview in progress.
+- Documentation site: Rspress + GitHub Pages preview.
 - Core SDK, database adapters, npm release: not part of this repository's first documentation-site delivery.
 
 ## License
 
 Apache-2.0. See [LICENSE](./LICENSE).
-

@@ -1,40 +1,29 @@
 {
-  "name": "@devcodex/lorebit-website",
+  "name": "@devcodex/lorebit-docs",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "engines": {
-    "node": ">=22.13.0"
+    "node": ">=22"
   },
   "scripts": {
-    "dev": "vinext dev",
-    "build": "vinext build",
-    "start": "vinext start",
-    "test": "npm run build && node --test tests/rendered-html.test.mjs",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
-    "db:generate": "drizzle-kit generate"
-  },
-  "dependencies": {
-    "next": "16.2.6",
-    "react": "19.2.6",
-    "react-dom": "19.2.6"
+    "dev": "rspress dev",
+    "build": "rspress build",
+    "preview": "rspress preview",
+    "test": "npm run build && node --test tests/docs-contract.test.mjs"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "1.37.1",
-    "@tailwindcss/postcss": "4.2.1",
-    "@types/node": "22.19.19",
-    "@types/react": "19.2.14",
-    "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "6.0.2",
-    "@vitejs/plugin-rsc": "0.5.26",
-    "drizzle-kit": "0.31.10",
-    "eslint": "9.39.4",
-    "eslint-config-next": "16.2.6",
-    "react-server-dom-webpack": "19.2.6",
-    "tailwindcss": "4.2.1",
-    "typescript": "5.9.3",
-    "vinext": "0.0.50",
-    "vite": "8.0.13",
-    "wrangler": "4.92.0"
+    "@rspress/core": "2.0.10",
+    "@types/node": "22.15.17",
+    "typescript": "5.8.3"
   },
-  "type": "module"
+  "overrides": {
+    "@unhead/react": "2.1.13",
+    "unhead": "2.1.13",
+    "@rsbuild/core": "2.0.3",
+    "@rsbuild/plugin-react": "2.0.0",
+    "@rspack/core": "2.0.1",
+    "@rspack/binding": "2.0.1",
+    "@rspack/plugin-react-refresh": "2.0.0"
+  }
 }

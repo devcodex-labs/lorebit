@@ -3,9 +3,10 @@ node_modules/
 dist/
 .next/
 .wrangler/
+website/.vinext/
+website/doc_build/
 coverage/
 *.log
 .env
 .env.*
 !.env.example
-
