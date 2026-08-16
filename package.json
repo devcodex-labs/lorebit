@@ -1,0 +1,59 @@
+{
+  "name": "@devcodex/lorebit",
+  "version": "0.0.0-development",
+  "description": "Provider-neutral knowledge lifecycle and RAG runtime.",
+  "license": "Apache-2.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./testing": {
+      "types": "./dist/testing/index.d.ts",
+      "import": "./dist/testing/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "check:traceability": "node scripts/check-traceability.mjs",
+    "test:wire": "node scripts/run-test-suite.mjs wire",
+    "test:unit": "node scripts/run-test-suite.mjs unit",
+    "test:contracts": "node scripts/run-test-suite.mjs contracts",
+    "test:integration": "node scripts/run-test-suite.mjs integration",
+    "test:scenarios": "node scripts/run-test-suite.mjs scenarios",
+    "test:security": "node scripts/run-test-suite.mjs security",
+    "test:resources": "node scripts/run-test-suite.mjs resources",
+    "test:concurrency": "node scripts/run-test-suite.mjs concurrency",
+    "test:package": "node scripts/run-test-suite.mjs package",
+    "pack:check": "node scripts/check-package.mjs",
+    "test:b1": "node scripts/run-test-suite.mjs unit contracts scenarios",
+    "test:b2": "node scripts/run-test-suite.mjs unit contracts integration scenarios",
+    "test:b3": "node scripts/run-test-suite.mjs unit contracts integration scenarios security",
+    "test:b4": "node scripts/run-test-suite.mjs unit contracts integration scenarios security resources concurrency",
+    "test:b5": "node scripts/run-test-suite.mjs unit contracts integration scenarios security resources concurrency package",
+    "test": "npm run typecheck && npm run build && npm run check:traceability && npm run test:wire && npm run test:b5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devcodex-labs/lorebit.git"
+  },
+  "homepage": "https://github.com/devcodex-labs/lorebit#readme",
+  "bugs": {
+    "url": "https://github.com/devcodex-labs/lorebit/issues"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  }
+}

@@ -1,0 +1,59 @@
+name: Runtime CI
+
+on:
+  pull_request:
+    paths:
+      - 'package.json'
+      - 'package-lock.json'
+      - 'CHANGELOG.md'
+      - 'LICENSE'
+      - 'tsconfig*.json'
+      - 'src/**'
+      - 'test/**'
+      - 'scripts/**'
+      - '.github/workflows/runtime-ci.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'package.json'
+      - 'package-lock.json'
+      - 'CHANGELOG.md'
+      - 'LICENSE'
+      - 'tsconfig*.json'
+      - 'src/**'
+      - 'test/**'
+      - 'scripts/**'
+      - '.github/workflows/runtime-ci.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node:
+          - 22.23.2
+          - 24.18.0
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm test
+      - run: npm run pack:check
+      - name: Create and verify the exact unpublished package candidate
+        shell: bash
+        env:
+          LOREBIT_TARBALL: ${{ runner.temp }}/lorebit-pack/devcodex-lorebit-0.0.0-development.tgz
+          LOREBIT_CONSUMER: ${{ runner.temp }}/lorebit-consumer
+        run: |
+          mkdir -p "$(dirname "$LOREBIT_TARBALL")"
+          npm pack --pack-destination "$(dirname "$LOREBIT_TARBALL")"
+          npm run pack:check -- --tarball "$LOREBIT_TARBALL"
+          node scripts/isolated-consumer-smoke.mjs --tarball "$LOREBIT_TARBALL" --consumer "$LOREBIT_CONSUMER"
