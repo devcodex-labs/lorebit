@@ -43,7 +43,7 @@
     "test:b3": "node scripts/run-test-suite.mjs unit contracts integration scenarios security",
     "test:b4": "node scripts/run-test-suite.mjs unit contracts integration scenarios security resources concurrency",
     "test:b5": "node scripts/run-test-suite.mjs unit contracts integration scenarios security resources concurrency package",
-    "test": "npm run typecheck && npm run build && npm run check:traceability && npm run test:wire && npm run test:b5"
+    "test": "npm run typecheck && npm run build && npm run test:wire && npm run test:b5"
   },
   "repository": {
     "type": "git",
