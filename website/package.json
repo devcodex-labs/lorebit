@@ -4,13 +4,21 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=22"
+    "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "rspress dev",
-    "build": "rspress build",
-    "preview": "rspress preview",
-    "test": "npm run build && node --test tests/docs-contract.test.mjs"
+    "dev": "npm run dev:user",
+    "build": "npm run build:user",
+    "preview": "npm run preview:user",
+    "test": "npm run test:user",
+    "dev:user": "rspress dev --config user-site/rspress.config.ts",
+    "build:user": "rspress build --config user-site/rspress.config.ts",
+    "preview:user": "npm run build:user && rspress preview --config user-site/rspress.config.ts",
+    "test:user": "npm run build:user && node --test user-site/tests/docs-contract.test.mjs user-site/tests/public-release-contract.test.mjs",
+    "dev:maintainer": "rspress dev --config ../../.devcodex/lorebit/maintainer-site/rspress.config.ts --host 127.0.0.1",
+    "build:maintainer": "rspress build --config ../../.devcodex/lorebit/maintainer-site/rspress.config.ts",
+    "preview:maintainer": "npm run build:maintainer && rspress preview --config ../../.devcodex/lorebit/maintainer-site/rspress.config.ts --host 127.0.0.1",
+    "test:maintainer": "npm run build:maintainer && node --test ../../.devcodex/lorebit/maintainer-site/tests/site-contract.test.mjs ../../.devcodex/lorebit/maintainer-site/tests/rendered-site.test.mjs"
   },
   "devDependencies": {
     "@rspress/core": "2.0.10",

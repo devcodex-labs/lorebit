@@ -2,25 +2,28 @@
 pageType: home
 hero:
   name: lorebit
-  text: 面向 RAG 的通用知识基础设施
-  tagline: 把资料、检索、上下文与引用组织为可演进的知识工作流；DevCodex 只是一个消费者，数据库只通过 adapter 接入。
+  text: 为可引用、可演进的知识工作流定义用户合同
+  tagline: 从真实问题、资料与证据到可解释回答；先冻结用户结果，再让实现与 adapter 围绕它演进。
   actions:
     - theme: brand
-      text: 先制定采用计划
+      text: 从真实问题开始
+      link: /start/choose-a-problem
+    - theme: alt
+      text: 建立第一条流程
       link: /start/first-plan
     - theme: alt
-      text: 理解 RAG 工作流
-      link: /concepts/rag-pipeline
-    - theme: alt
-      text: 查看 Adapter 边界
-      link: /adapters/database-adapters
+      text: 查看 0.x 目标合同
+      link: /reference/behavior-contract
 features:
   - title: 先把证据做对
     details: 从资料来源、版本和引用开始，而不是先把数据塞进某一种向量数据库。
-    link: /concepts/knowledge-lifecycle
+    link: /start/source-and-evidence
   - title: RAG 是主路径
     details: 摄取、规范化、检索、重排、上下文和 citation 是一个连续工作流。
     link: /concepts/rag-pipeline
+  - title: 用用户结果约束实现
+    details: 0.x 目标合同冻结范围、资料状态、证据回答、变化和恢复语义；后续实现必须逐项兑现。
+    link: /reference/behavior-contract
   - title: 存储能力可替换
     details: 文档、向量、全文、图与检查点都通过能力明确的 adapter 接入。
     link: /adapters/database-adapters
@@ -29,15 +32,38 @@ features:
     link: /reference/preview-status
 ---
 
-<span class="lorebit-label">EARLY PREVIEW · 用户文档先行</span>
+<span class="lorebit-label">EARLY PREVIEW · 先写用户合同，再进入实现</span>
 
-> **当前状态：** lorebit 的核心 SDK 和 `@devcodex/lorebit` npm 包尚未发布。本网站说明产品边界与采用路径，不把设计草案写成可安装 API。
+> **当前状态：** lorebit 的核心 SDK 和 `@devcodex/lorebit` npm 包尚未发布。本网站同时提供当前采用设计与明确标注的 **0.x 目标行为合同**；后者是未来实现必须兑现的用户结果，不是可安装 API。
 
 ## 先解决哪类问题
 
 lorebit 适合需要持续从资料中检索证据、把答案和来源一起交付、并让知识随着原始资料更新的产品。它不是数据库产品，也不是只服务某一个宿主的内部模块。
 
 你可以先从“第一次采用计划”开始，确认自己的资料、查询和更新边界；再决定是否等待公开 SDK 接入。
+
+## 本站如何帮助你，而不是替你虚构接入
+
+用户文档先回答“你要完成什么”，再回答“未来实现必须保证什么”。因此，在当前没有运行时的阶段，你可以用它与资料负责人、业务使用者和集成团队评审一条真实流程；等公开入口出现后，安装、配置和排错教程会以同一份用户合同为准补上。
+
+| 阅读层 | 你现在能得到什么 | 不应误读成 |
+|---|---|---|
+| 开始设计与第一条流程 | 问题、知识空间、资料准入和回答合同的工作方法 | 已经存在的 SDK 操作步骤。 |
+| 可靠性页面 | 变化、状态、能力和恢复的用户结果 | 某个特定数据库的使用说明。 |
+| 目标合同与验收场景 | 0.x 实现必须兑现的行为与不可接受结果 | 已发布的 API、命令或兼容性承诺。 |
+
+## 先判断是否适合
+
+| 你的场景 | 是否适合从 lorebit 的工作流开始 |
+|---|---|
+| 客服、销售或运营需要依据最新规则回答问题 | 适合：先把规则来源、版本和引用要求写清。 |
+| 答案正确与否取决于资料何时更新、被撤回或被替代 | 适合：生命周期是问题的一部分。 |
+| 只想把任意文本塞入某一款向量数据库 | 不适合把 lorebit 当成数据库替代品；先明确真正的回答任务。 |
+| 需要立刻安装可用 SDK、CLI 或托管服务 | 暂不适合：这些公开入口尚未发布。 |
+
+## 什么算第一次成功
+
+第一次成功不是“建好了一个索引”，而是完成一张可评审的工作流卡：一个真实问题、允许使用的资料、答案必须带回的证据、资料变化后的处理方式。你可以把它交给产品、资料负责人和工程团队共同核对，而不用先绑定任何 provider。
 
 ## 用户路径
 
@@ -46,4 +72,8 @@ lorebit 适合需要持续从资料中检索证据、把答案和来源一起交
 3. 选择需要的存储能力，而不是预设某一个数据库。
 4. 在公开 SDK 可用后，把这一条路径变成可验证的摄取与检索工作流。
 
-下一步：[制定第一次采用计划](/start/first-plan)。
+## 让后续开发围绕文档推进
+
+本网站的 U1–U7 目标行为和三条端到端场景是后续开发的产品事实源。实现可以选择不同的 API、索引或 adapter，但不能悄悄改变使用者看到的范围、证据、状态、变化和恢复语义。若这些用户结果需要变化，先修订[目标行为合同](/reference/behavior-contract)，再改实现。
+
+下一步：[选择一个值得交给知识流程的问题](/start/choose-a-problem)。

@@ -5,6 +5,7 @@ dist/
 .wrangler/
 website/.vinext/
 website/doc_build/
+/website/maintainer-site/
 coverage/
 *.log
 .env
